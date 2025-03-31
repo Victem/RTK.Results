@@ -1,0 +1,25 @@
+{
+  "$schema": "https://raw.githubusercontent.com/dotnet/Nerdbank.GitVersioning/main/src/NerdBank.GitVersioning/version.schema.json",
+  "version": "1.0.2",
+  "assemblyVersion": {
+    "precision": "revision"
+  },
+  "publicReleaseRefSpec": [
+    "^refs/heads/master$",
+    //"^refs/heads/release/results.core/v\\d+(?:\\.\\d+)?$",
+    "^refs/heads/release/results.web/v\\d*\\.\\d*.\\d*$"
+
+  ],
+  "release": {
+    "tagName": "results.web/v{version}",
+    "branchName": "release/results.web/v{version}",
+    "versionIncrement": "build"
+  },
+  "nugetPackageVersion": {
+    "semVer": 1, // optional. Set to either 1 or 2 to control how the NuGet package version string is generated. Default is 1.
+    "precision": "build" // optional. Use when you want to use a more or less precise package version than the default major.minor.build.
+  },
+  "pathFilters": [
+    "./"
+  ]
+}

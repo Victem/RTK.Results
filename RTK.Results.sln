@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35806.99
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решения", "Элементы решения", "{754FC069-D67B-A9D7-50A1-8D1CA196D8F1}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Packages.props = Directory.Packages.props
+		Readme.md = Readme.md
+		_Directory.Build.props = _Directory.Build.props
+		_version.json = _version.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{79D8646F-135E-42A8-92A5-C989BE20ADF3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RTK.Results.Tests", "tests\RTK.Results.Tests\RTK.Results.Tests.csproj", "{2C84D2C2-F4FA-47DD-ABD3-7C8D4E93F566}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RTK.Results.Core", "src\RTK.Results.Core\RTK.Results.Core.csproj", "{BB2911F0-C479-454B-88ED-EAB3B0987472}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RTK.Results.Web", "src\RTK.Results.Web\RTK.Results.Web.csproj", "{AB3FA7D3-913E-4D68-B005-672D51CF0A40}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2C84D2C2-F4FA-47DD-ABD3-7C8D4E93F566}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C84D2C2-F4FA-47DD-ABD3-7C8D4E93F566}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C84D2C2-F4FA-47DD-ABD3-7C8D4E93F566}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C84D2C2-F4FA-47DD-ABD3-7C8D4E93F566}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB2911F0-C479-454B-88ED-EAB3B0987472}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB2911F0-C479-454B-88ED-EAB3B0987472}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB2911F0-C479-454B-88ED-EAB3B0987472}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB2911F0-C479-454B-88ED-EAB3B0987472}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB3FA7D3-913E-4D68-B005-672D51CF0A40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB3FA7D3-913E-4D68-B005-672D51CF0A40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB3FA7D3-913E-4D68-B005-672D51CF0A40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB3FA7D3-913E-4D68-B005-672D51CF0A40}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2C84D2C2-F4FA-47DD-ABD3-7C8D4E93F566} = {79D8646F-135E-42A8-92A5-C989BE20ADF3}
+		{BB2911F0-C479-454B-88ED-EAB3B0987472} = {36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}
+		{AB3FA7D3-913E-4D68-B005-672D51CF0A40} = {36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {47F518CE-D904-4D10-B6CE-2240FB2ACAC0}
+	EndGlobalSection
+EndGlobal
