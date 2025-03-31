@@ -9,7 +9,7 @@ namespace RTK.Results.Web
     public static class ResultsExtensions
     {
         
-        public static ProblemDetails ToProblem<TValue>(this Error error)
+        public static ProblemDetails ToProblem(this Error error)
         {
             return new ProblemDetails
             {

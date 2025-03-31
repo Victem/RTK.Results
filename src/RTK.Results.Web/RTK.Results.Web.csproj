@@ -16,5 +16,9 @@
   <ItemGroup>
     <ProjectReference Include="..\RTK.Results.Core\RTK.Results.Core.csproj" />
   </ItemGroup>
-
+  <ItemGroup>
+    <!--<PackageReference Include="Nerdbank.GitVersioning" Condition="!Exists('packages.config')">
+      <PrivateAssets>All</PrivateAssets>
+    </PackageReference>-->
+  </ItemGroup>
 </Project>
