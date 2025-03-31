@@ -12,16 +12,16 @@ namespace RTK.Results.Tests.ResultCases
     {
 
         [Fact]
-        public async Task Create_Success_With_Fail_Async_On_First_Step()
+        public async Task Create_Async_Error_When_Initial_Is_Error_And_Condition_Fail()
         {
             var message = "test";
             var failMessage = "TEST";
             var error = Error.Create("fail", $"Message {message} is not equal {failMessage}");
-
+            var errorNext = Error.Create("failNext", $"Message {message} is not equal {failMessage}");
 
             Result<string> result = await error.ToResult<string>()
                 .AsTask()
-                .FailIfAsync(r => Task.FromResult(r == failMessage), error);
+                .FailIfAsync(async r => r == failMessage, errorNext);
 
             Assert.False(result.IsSuccess);
             Assert.True(result.IsFailure);
@@ -29,53 +29,37 @@ namespace RTK.Results.Tests.ResultCases
             Assert.Throws(typeof(InvalidOperationException), () => result.Value);
         }
 
+
         [Fact]
-        public async Task Create_Success_With_Fail_Async_On_Next_Step()
+        public async Task Create_Async_Error_When_Initial_Is_Error_And_Condition_Success()
         {
             var message = "test";
-            var failMessage = "TEST";
+            var failMessage = "test";
             var error = Error.Create("fail", $"Message {message} is not equal {failMessage}");
-
-
-            Result<string> result = await message.ToResult()
-                .AsTask()
-                .FailIfAsync(r => Task.FromResult(r == failMessage), error);
-
-            Assert.False(result.IsSuccess);
-            Assert.True(result.IsFailure);
-            Assert.Equal(result, error);
-            Assert.Throws(typeof(InvalidOperationException), () => result.Value);
-        }
-
-        [Fact]
-        public async Task Create_Success_With_Success_Async_On_Next_Step()
-        {
-            var message = "test";
-            var successMessage = "test";
-            var error = Error.Create("fail", $"Message {message} is not equal {successMessage}");
-            Result<string> expectedSuccessResult = message;
-
-            Result<string> result = await message.ToResult()
-                .FailIfAsync(r => Task.FromResult(r == successMessage), error);
-
-            Assert.True(result.IsSuccess);
-            Assert.False(result.IsFailure);
-            Assert.Equal(expectedSuccessResult, result);
-            Assert.Equal(expectedSuccessResult.Error, Error.None);
-        }
-
-
-        [Fact]
-        public async Task Create_Success_With_Fail_Async_On_First_Step_With_Error_Builder()
-        {
-            var message = "test";
-            var failMessage = "TEST";
-            var error = Error.Create("fail", $"Message {message} is not equal {failMessage}");
-
+            var errorNext = Error.Create("failNext", $"Message {message} is not equal {failMessage}");
 
             Result<string> result = await error.ToResult<string>()
                 .AsTask()
-                .FailIfAsync(r => Task.FromResult(r == failMessage), r => Task.FromResult(error));
+                .FailIfAsync(async r => r == failMessage, errorNext);
+
+            Assert.False(result.IsSuccess);
+            Assert.True(result.IsFailure);
+            Assert.Equal(result, error);
+            Assert.Throws(typeof(InvalidOperationException), () => result.Value);
+        }
+
+
+        [Fact]
+        public async Task Create_Async_Error_When_Initial_Is_Value_And_Condition_Success()
+        {
+            var message = "test";
+            var failMessage = "test";
+            var error = Error.Create("fail", $"Message {message} is not equal {failMessage}");
+            //var errorNext = Error.Create("failNext", $"Message {message} is not equal {failMessage}");
+
+            Result<string> result = await message.ToResult<string>()
+                .AsTask()
+                .FailIfAsync(async r => r == failMessage, error);
 
             Assert.False(result.IsSuccess);
             Assert.True(result.IsFailure);
@@ -84,16 +68,76 @@ namespace RTK.Results.Tests.ResultCases
         }
 
         [Fact]
-        public async Task Create_Success_With_Fail_Async_On_Next_Step_With_Error_Builder()
+        public async Task Create_Async_Success_When_Initial_Is_Value_And_Condition_Fail()
         {
             var message = "test";
             var failMessage = "TEST";
             var error = Error.Create("fail", $"Message {message} is not equal {failMessage}");
+            //var errorNext = Error.Create("failNext", $"Message {message} is not equal {failMessage}");
 
-
-            Result<string> result = await message.ToResult()
+            Result<string> result = await message.ToResult<string>()
                 .AsTask()
-                .FailIfAsync(r => Task.FromResult(r == failMessage), r => Task.FromResult(error));
+                .FailIfAsync(async r => r == failMessage, error);
+
+            Assert.True(result.IsSuccess);
+            Assert.False(result.IsFailure);
+            Assert.Equal(result.Error, Error.None);
+            //Assert.Throws(typeof(InvalidOperationException), () => result.Value);
+        }
+
+
+
+        ///------------------------------
+
+        [Fact]
+        public async Task Create_Async_Error_When_Initial_Is_Error_And_Condition_Fail_With_Error_Builder()
+        {
+            var message = "test";
+            var failMessage = "TEST";
+            var error = Error.Create("fail", $"Message {message} is not equal {failMessage}");
+            var errorNext = Error.Create("failNext", $"Message {message} is not equal {failMessage}");
+
+            Result<string> result = await error.ToResult<string>()
+                .AsTask()
+                .FailIfAsync(async r => r == failMessage, async (v) => errorNext);
+
+            Assert.False(result.IsSuccess);
+            Assert.True(result.IsFailure);
+            Assert.Equal(result, error);
+            Assert.Throws(typeof(InvalidOperationException), () => result.Value);
+        }
+
+
+        [Fact]
+        public async Task Create_Async_Error_When_Initial_Is_Error_And_Condition_Success_With_Error_Builder()
+        {
+            var message = "test";
+            var failMessage = "test";
+            var error = Error.Create("fail", $"Message {message} is not equal {failMessage}");
+            var errorNext = Error.Create("failNext", $"Message {message} is not equal {failMessage}");
+
+            Result<string> result = await error.ToResult<string>()
+                .AsTask()
+                .FailIfAsync(async r => r == failMessage, async (v) => errorNext);
+
+            Assert.False(result.IsSuccess);
+            Assert.True(result.IsFailure);
+            Assert.Equal(result, error);
+            Assert.Throws(typeof(InvalidOperationException), () => result.Value);
+        }
+
+
+        [Fact]
+        public async Task Create_Async_Error_When_Initial_Is_Value_And_Condition_Success_With_Error_Builder()
+        {
+            var message = "test";
+            var failMessage = "test";
+            var error = Error.Create("fail", $"Message {message} is not equal {failMessage}");
+            //var errorNext = Error.Create("failNext", $"Message {message} is not equal {failMessage}");
+
+            Result<string> result = await message.ToResult<string>()
+                .AsTask()
+                .FailIfAsync(async r => r == failMessage, async (v) => error);
 
             Assert.False(result.IsSuccess);
             Assert.True(result.IsFailure);
@@ -102,21 +146,21 @@ namespace RTK.Results.Tests.ResultCases
         }
 
         [Fact]
-        public async Task Create_Success_With_Success_Async_On_Next_Step_With_Error_Builder()
+        public async Task Create_Async_Success_When_Initial_Is_Value_And_Condition_Fail_With_Error_Builder()
         {
             var message = "test";
-            var successMessage = "test";
-            var error = Error.Create("fail", $"Message {message} is not equal {successMessage}");
-            Result<string> expectedSuccessResult = message;
+            var failMessage = "TEST";
+            var error = Error.Create("fail", $"Message {message} is not equal {failMessage}");
+            //var errorNext = Error.Create("failNext", $"Message {message} is not equal {failMessage}");
 
-            Result<string> result = await message.ToResult()
+            Result<string> result = await message.ToResult<string>()
                 .AsTask()
-                .FailIfAsync(r => Task.FromResult(r == successMessage), r => Task.FromResult(error));
+                .FailIfAsync(async r => r == failMessage, async (v) => error);
 
             Assert.True(result.IsSuccess);
             Assert.False(result.IsFailure);
-            Assert.Equal(expectedSuccessResult, result);
-            Assert.Equal(expectedSuccessResult.Error, Error.None);
+            Assert.Equal(result.Error, Error.None);
+            //Assert.Throws(typeof(InvalidOperationException), () => result.Value);
         }
     }
 }

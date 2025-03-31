@@ -75,28 +75,28 @@ namespace RTK.Results.Core
 
         public Result<TValue> FailIf(Func<TValue, bool> onValue, Error error)
         {
-            if (IsFailure) { return error; }
-            return onValue(Value) ? this : error;
+            if (IsFailure) { return this; }
+            return onValue(Value) ? error : this;
         }
 
         public Result<TValue> FailIf(Func<TValue, bool> onValue, Func<TValue, Error> errorBuilder)
         {
             if (IsFailure) { return this; }
-            return onValue(Value) ? this : errorBuilder(Value);
+            return onValue(Value) ? errorBuilder(Value) : this;
         }
 
         public async Task<Result<TValue>> FailIfAsync(Func<TValue, Task<bool>> onValue, Error error)
         {
-            if (IsFailure) { return error; }
-            return await onValue(Value).ConfigureAwait(false) ? this : error;
+            if (IsFailure) { return this; }
+            return await onValue(Value).ConfigureAwait(false) ? error : this;
         }
 
         public async Task<Result<TValue>> FailIfAsync(Func<TValue, Task<bool>> onValue, Func<TValue, Task<Error>> errorBuilder)
         {
             if (IsFailure) { return this; }
             return await onValue(Value).ConfigureAwait(false)
-                ? this
-                : await errorBuilder(Value).ConfigureAwait(false);
+                ? await errorBuilder(Value).ConfigureAwait(false)
+                : this;
         }
 
 
