@@ -1,0 +1,1 @@
+﻿dotnet nuget push .\RTK.Results.Core.1.0.0.nupkg -s MyNuget

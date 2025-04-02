@@ -199,6 +199,30 @@ namespace RTK.Results.Core
             return error;
         }
 
+        public static async Task<Result<TValue>> AwaitResult<TValue>(this Task<TValue> task, Func<Exception, Result<TValue>> errorBuilder = default) 
+        {
+            try
+            {
+                return (await task.ConfigureAwait(false)).ToResult();
+            }
+            catch (Exception e)
+            {
+                return errorBuilder?.Invoke(e) ?? e.ToResult<TValue>(true);
+            }
+        }
+
+        public static async ValueTask<Result<TValue>> AwaitResult<TValue>(this ValueTask<TValue> task, Func<Exception, Result<TValue>> errorBuilder = default)
+        {
+            try
+            {
+                return await task.ConfigureAwait(false);
+            }
+            catch (Exception e)
+            {
+                return errorBuilder?.Invoke(e) ?? e.ToResult<TValue>(true);
+            }
+        }
+
         public static Result<TValue> ToResult<TValue>(this Exception exception, bool includeStatckTrace = false)
         {
             //var metadata = exception.Data
@@ -220,5 +244,14 @@ namespace RTK.Results.Core
             return Task.FromResult(error.ToResult<TValue>());
         }
 
+        public static ValueTask<Result<TValue>> AsValueTask<TValue>(this Result<TValue> result)
+        {
+            return ValueTask.FromResult(result);
+        }
+
+        public static ValueTask<Result<TValue>> AsValueTask<TValue>(this Error error)
+        {
+            return ValueTask.FromResult(error.ToResult<TValue>());
+        }
     }
 }
