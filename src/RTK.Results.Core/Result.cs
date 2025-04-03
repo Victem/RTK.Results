@@ -20,7 +20,7 @@ namespace RTK.Results.Core
         //public static MyResult<TValue> Ok2 => MyResult<TValue>.Success(default(Ok));
     }
 
-    // docs 1111
+    // docs 2222
     public struct Result<TValue>
     {
         private readonly TValue _value;
