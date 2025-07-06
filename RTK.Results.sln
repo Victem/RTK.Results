@@ -21,6 +21,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RTK.Results.Core", "src\RTK
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RTK.Results.Web", "src\RTK.Results.Web\RTK.Results.Web.csproj", "{AB3FA7D3-913E-4D68-B005-672D51CF0A40}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RTK.Results.SampleApi", "samples\RTK.Results.SampleApi\RTK.Results.SampleApi.csproj", "{CA960B8F-698E-4265-AB00-AD857A6AC426}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{5D20AA90-6969-D8BD-9DCD-8634F4692FDA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,10 @@ Global
 		{AB3FA7D3-913E-4D68-B005-672D51CF0A40}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB3FA7D3-913E-4D68-B005-672D51CF0A40}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB3FA7D3-913E-4D68-B005-672D51CF0A40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA960B8F-698E-4265-AB00-AD857A6AC426}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA960B8F-698E-4265-AB00-AD857A6AC426}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA960B8F-698E-4265-AB00-AD857A6AC426}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA960B8F-698E-4265-AB00-AD857A6AC426}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -47,6 +55,7 @@ Global
 		{2C84D2C2-F4FA-47DD-ABD3-7C8D4E93F566} = {79D8646F-135E-42A8-92A5-C989BE20ADF3}
 		{BB2911F0-C479-454B-88ED-EAB3B0987472} = {36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}
 		{AB3FA7D3-913E-4D68-B005-672D51CF0A40} = {36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}
+		{CA960B8F-698E-4265-AB00-AD857A6AC426} = {5D20AA90-6969-D8BD-9DCD-8634F4692FDA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {47F518CE-D904-4D10-B6CE-2240FB2ACAC0}

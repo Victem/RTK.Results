@@ -1,0 +1,22 @@
+@RTK.Results.SampleApi_HostAddress = http://localhost:5240
+
+GET {{RTK.Results.SampleApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
+GET {{RTK.Results.SampleApi_HostAddress}}/handle-number/-1
+Accept: application/json
+
+###
+
+
+GET {{RTK.Results.SampleApi_HostAddress}}/handle-number/5
+Accept: application/json
+
+###
+
+GET {{RTK.Results.SampleApi_HostAddress}}/handle-number/2
+Accept: application/json
+
+###

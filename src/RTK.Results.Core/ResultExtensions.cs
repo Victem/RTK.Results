@@ -223,6 +223,19 @@ namespace RTK.Results.Core
             }
         }
 
+
+        public static async Task<Result<TValue>> AwaitResult<TValue>(this Task<Result<TValue>> task, Func<Exception, Result<TValue>> errorBuilder = default)
+        {
+            try
+            {
+                return (await task.ConfigureAwait(false));
+            }
+            catch (Exception e)
+            {
+                return errorBuilder?.Invoke(e) ?? e.ToResult<TValue>(true);
+            }
+        }
+
         public static Result<TValue> ToResult<TValue>(this Exception exception, bool includeStatckTrace = false)
         {
             //var metadata = exception.Data
